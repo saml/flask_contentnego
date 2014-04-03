@@ -95,7 +95,7 @@ def detail(key):
                     return jsonify(msg=msg),405
                 if t == 'text/html':
                     return render_template('base.html', msg=msg),405
-                return jsonify(msg=msg),405
+            return jsonify(msg=msg),405
 
     if request.method == 'PUT' or g.method == 'PUT':
         val = None
@@ -130,7 +130,7 @@ def detail(key):
                 return jsonify(msg=msg),404
             if t == 'text/html':
                 return render_template('base.html', msg=msg),404
-            return jsonify(msg=msg),404
+        return jsonify(msg=msg),404
 
 
 if __name__ == '__main__':
