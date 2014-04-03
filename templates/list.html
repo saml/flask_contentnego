@@ -7,7 +7,7 @@
 <hr>
 <ul>
 {% for k,v in db.items() %}
-    <li><a href="{{ url_for('detail', key=k) }}">{{ k }}</a></li>
+    <li><a href="{{ url_for('.detail', key=k) }}">{{ k }}</a></li>
 {% endfor %}
 </ul>
 {%- endblock %}
