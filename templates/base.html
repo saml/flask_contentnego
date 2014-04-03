@@ -1,4 +1,6 @@
 <!doctype html>
 <meta charset="utf-8">
-<title>{%- block title %}{{ title }}{%- endblock %}</title>
+<title>{%- block title %}{% if title %}{{ title }}{% else %}hi{% endif %}{%- endblock %}</title>
+{%- if msg %}<h1 class="msg">{{ msg }}</h1>{%- endif %}
+<nav><a href="{{ url_for('list') }}">Home</a></nav>
 {%- block body %}{%- endblock %}

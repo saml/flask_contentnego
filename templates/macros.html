@@ -1,0 +1,3 @@
+{%- macro delete_btn(key) -%}<form method="POST" action="{{ url_for('detail', key=key) }}"><input type="hidden" name="method" value="DELETE"><input type="submit" value="Delete"></form>{%- endmacro %}
+
+
