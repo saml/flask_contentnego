@@ -7,6 +7,9 @@ from database import db, put, rm, next_id
 bp = Blueprint('classes', __name__)
 
 class Renderable(object):
+    def render_default(self):
+        return self.render_json()
+
     def render_json(self):
         raise NotImplemented()
 
@@ -19,9 +22,7 @@ class Renderable(object):
                 return self.render_json()
             if t == 'text/html':
                 return self.render_html()
-        return self.DEFAULT()
-
-    DEFAULT = render_json
+        return self.render_default()
 
 
 class DetailRenderer(Renderable):
