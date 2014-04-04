@@ -52,5 +52,9 @@ class DB(object):
     def __iter__(self):
         return self.d.__iter__()
 
+    def jsondumps(self):
+        return json.dumps(self.d)
+
+
 db = DB()
 

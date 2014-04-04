@@ -49,14 +49,14 @@ class MessageRenderer(Renderable):
         return render_template('base.html', msg=self.msg),self.status_code,self.headers
 
 class ListRenderer(Renderable):
-    def __init__(self, keyvals):
-        self.keyvals = keyvals
+    def __init__(self, db):
+        self.db = db
 
     def render_json(self):
-        return json.dumps(self.keyvals),200,{'Content-Type': 'application/json'}
+        return self.db.jsondumps(),200,{'Content-Type': 'application/json'}
 
     def render_html(self):
-        return render_template('list.html', db=self.keyvals)
+        return render_template('list.html', db=self.db)
 
 @bp.route('/', methods=['GET', 'POST'])
 def list():
