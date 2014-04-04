@@ -2,7 +2,7 @@ import json
 
 from flask import Blueprint, render_template, jsonify, request, url_for, g
 
-from database import db, put, rm, next_id
+from database import db
 
 bp = Blueprint('classes', __name__)
 
@@ -72,8 +72,8 @@ def list():
     if not val:
         return MessageRenderer('need val',400).render()
     
-    key = next_id()
-    put(db,key,val)
+    key = db.next_id()
+    db.put(key,val)
     created_url = url_for('.detail', key=key)
     return MessageRenderer('created: '+created_url,201,{'Location': created_url, 'Content-Location':  created_url}).render()
 
@@ -101,13 +101,13 @@ def detail(key):
         if request.mimetype == 'application/x-www-form-urlencoded':
             val = request.form['val']
 
-        put(db,key,val)
+        db.put(key,val)
 
         return DetailRenderer(key,val).render()
 
     if request.method == 'DELETE' or g.method == 'DELETE':
         if key in db:
-            rm(db,key)
+            db.rm(key)
             return MessageRenderer('deleted: '+key).render()
         return MessageRenderer('not found: '+key,404).render()
 
